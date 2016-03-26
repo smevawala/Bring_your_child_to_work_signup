@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% block cssScripts %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+
+      <form class="form-horizontal" role="form" action='/register' method="POST">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="name1">Child Name:</label>
+          <div class="col-sm-10">
+          <input type="text" class="form-control" name="name1" id="name1" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="age1">Child Age</label>
+          <div class="col-sm-10">
+          <select class="form-control" name="age1" id="age1" required>
+            <option value=""></option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16+</option>
+          </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="parent">LGS Parent Name:</label>
+          <div class="col-sm-10">
+          <input type="text" class="form-control" name="parent" id="parent" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="lunch">Will the child have lunch?:</label>
+          <div class="col-sm-10">
+            <label class="radio-inline"><input type="radio" name="lunch" id="lunch" value="true" required>Yes</label>
+            <label class="radio-inline"><input type="radio" name="lunch" id="lunch" value="false" required>No</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Any more children?:</label>
+          <div class="col-sm-10" id="More2">
+            <label class="radio-inline"><input type="radio" name="2" id="more2" required>Yes</label>
+            <label class="radio-inline"><input type="radio" name="2" required>No</label>
+          </div>
+        </div>
+
+        <div id="2">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="name2">Child #2 Name:</label>
+              <div class="col-sm-10">
+              <input type="text" class="form-control" name="name2" id="name2">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="age2">Child #2 Age</label>
+              <div class="col-sm-10">
+              <select class="form-control" name="age2" id="age2">
+                <option value=""></option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16+</option>
+              </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2">Any more children?:</label>
+              <div class="col-sm-10" id="More3">
+                <label class="radio-inline"><input type="radio" name="3" id="more3">Yes</label>
+                <label class="radio-inline"><input type="radio" name="3" checked>No</label>
+              </div>
+            </div>
+          </div>
+
+            <div id="3">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="name3">Child #3 Name:</label>
+                  <div class="col-sm-10">
+                  <input type="text" class="form-control" name="name3" id="name3">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="age3">Child #3 Age</label>
+                  <div class="col-sm-10">
+                  <select class="form-control" name="age3" id="age3">
+                    <option value=""></option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16+</option>
+                  </select>
+                  </div>
+                </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2">Any more children?:</label>
+                <div class="col-sm-10" id="More4">
+                  <label class="radio-inline"><input type="radio" name="4" id="more4">Yes</label>
+                  <label class="radio-inline"><input type="radio" name="4" checked>No</label>
+                </div>
+              </div>
+            </div>
+
+
+          <div id="4">
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="name4">Child #4 Name:</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" name="name4" id="name4">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="age4">Child #4 Age</label>
+                <div class="col-sm-10">
+                <select class="form-control" name="age4" id="age4">
+                  <option value=""></option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16+</option>
+                </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2">Any more children?:</label>
+                <div class="col-sm-10" id="More5">
+                  <label class="radio-inline"><input type="radio" name="5" id="more5">Yes</label>
+                  <label class="radio-inline"><input type="radio" name="5" checked>No</label>
+                </div>
+              </div>
+            </div>
+
+
+                <div id="5">
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="name5">Child #5 Name:</label>
+                      <div class="col-sm-10">
+                      <input type="text" class="form-control" name="name5" id="name5">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="age5">Child #5 Age</label>
+                      <div class="col-sm-10">
+                      <select class="form-control" name="age5" id="age5">
+                        <option value=""></option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16+</option>
+                      </select>
+                      </div>
+                    </div>
+                  </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="chap">Anyone willing to chaperone?:</label>
+          <div class="col-sm-10" id="Chap">
+            <label class="radio-inline"><input type="radio" name="chap" id="chap" value="true" required>Yes</label>
+            <label class="radio-inline"><input type="radio" name="chap" value="false" required>No</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="chapn">Chaperone Name:</label>
+          <div class="col-sm-10">
+          <input type="text" class="form-control" name="chapn" id="chapn">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="notes">Additional Requests:</label>
+          <div class="col-sm-10">
+          <textarea class="form-control" rows="5" name="notes" id="notes"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </form>
+
+
+    </div> <!-- /container -->
+
+{% endblock %}
+
+{% block jsScripts %}
+<script>
+$("#Chap").change(function () {
+console.log($("#chap").is(":checked"));
+if($("#chap").is(":checked")){
+  console.log("chapn is required");
+  $('#chapn').attr('required', true);
+} else{
+  console.log("chapn is not required");
+  $('#chapn').attr('required', false);
+}});
+
+$("#More2").change(function () {
+if($("#more2").is(":checked")){
+  $('#2').show();
+  $('#name2').attr('required', true);
+  $('#age2').attr('required', true);
+} else{
+    $('#2').hide();
+    $('#name2').attr('required', false);
+    $('#age2').attr('required', false);
+}});
+$("#More3").change(function () {
+if($("#more3").is(":checked")){
+  $('#3').show();
+  $('#name3').attr('required', true);
+  $('#age3').attr('required', true);
+} else{
+    $('#3').hide();
+    $('#name3').attr('required', false);
+    $('#age3').attr('required', false);
+}});
+$("#More4").change(function () {
+if($("#more4").is(":checked")){
+  $('#4').show();
+  $('#name4').attr('required', true);
+  $('#age4').attr('required', true);
+} else{
+    $('#4').hide();
+    $('#name4').attr('required', false);
+    $('#age4').attr('required', false);
+}});
+$("#More5").change(function () {
+if($("#more5").is(":checked")){
+  $('#5').show();
+  $('#name5').attr('required', true);
+  $('#age5').attr('required', true);
+} else{
+    $('#5').hide();
+    $('#name5').attr('required', false);
+    $('#age5').attr('required', false);
+}});
+
+
+$(document).ready(function (e) {
+$('#2').hide();
+$('#3').hide();
+$('#4').hide();
+$('#5').hide();
+});
+</script>
+
+{% endblock %}
