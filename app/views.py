@@ -27,15 +27,23 @@ def login():
     error = None
     n=1
     chapText = ""
+    UserList=[]
+    chapList=[]
     if request.method == 'POST':
         while(request.form['name'+str(n)]!=''):
             print(n)
-            db.session.add(models.User(name=request.form['name'+str(n)], age = int(request.form['age'+str(n)]), parent = request.form['parent'], lunch = (request.form['lunch']!="false")
+            UserList.append(models.User(name=request.form['name'+str(n)], age = int(request.form['age'+str(n)]), parent = request.form['parent'], lunch = (request.form['lunch']!="false")
             , chaperone = (request.form['chap']!="false"), chapName = request.form['chapn'], notes = request.form['notes'+str(n)]))
+            db.session.add(UserList[n-1])
             chapText+=request.form['name'+str(n)]+" Age:"+request.form['age'+str(n)]+", "
             n+=1
-        db.session.add(models.Chap(name  = request.form['chapn'], parent = request.form['parent'], kids = chapText))
+        if(request.form['chap']!="false"):
+            chap= models.Chap(name  = request.form['chapn'], parent = request.form['parent'], kids = chapText)
+            db.session.add(chap)
+            chapList.append(chap)
         db.session.commit()
         flash('You registered')
-        return redirect(url_for('list'))
+        return render_template('thanks.html',
+                               title='Thank You For Registering',
+                               users=UserList, chaps=chapList)
     return redirect(url_for('index'))

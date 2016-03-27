@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Thanks for registering</h1>
+    <p>Please review the following entries.  If there are any issues, email Pat.</p>
+    <h2>Children Registered:</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Child Name</th>
+          <th>Parent Name</th>
+          <th>Age</th>
+          <th>Lunch</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set count = 0 %}
+        {% for user in users %}
+        {% set count = count+1 %}
+        <tr>
+          <th scope="row">{{count}}</th>
+          <td>{{user.name}}</td>
+          <td>{{user.parent}}</td>
+          <td>{{user.age}}</td>
+          <td>{{'Yes' if user.lunch else 'No'}}</td>
+          <td>{{user.notes}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% if chaps|count!=0 %}
+  </h2>Chaperones Registered:</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Chaperone Name</th>
+          <th>Employee Name</th>
+          <th>Associated with</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set count = 0 %}
+        {% for chap in chaps %}
+        {% set count = count+1 %}
+        <tr>
+          <th scope="row">{{count}}</th>
+          <td>{{chap.name}}</td>
+          <td>{{chap.parent}}</td>
+          <td>{{chap.kids}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+{% endblock %}
