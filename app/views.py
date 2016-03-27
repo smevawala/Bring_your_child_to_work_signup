@@ -3,8 +3,12 @@ from app import app, db, models
 @app.route('/')
 @app.route('/index')
 def index():
-    users = models.User.query.all() # fake user
     return render_template('index.html',
+                           title='Welcome')
+
+@app.route('/chapOnly')
+def cFom():
+    return render_template('conly.html',
                            title='Welcome')
 
 @app.route('/list')
@@ -14,8 +18,8 @@ def list():
                            title='List',
                            users=users)
 
-@app.route('/chaperone')
-def chaperone():
+@app.route('/chaplist')
+def chaplist():
     users = models.Chap.query.all();
     return render_template('chaperones.html',
                            title='List',
@@ -41,6 +45,22 @@ def login():
             chap= models.Chap(name  = request.form['chapn'], parent = request.form['parent'], kids = chapText)
             db.session.add(chap)
             chapList.append(chap)
+        db.session.commit()
+        flash('You registered')
+        return render_template('thanks.html',
+                               title='Thank You For Registering',
+                               users=UserList, chaps=chapList)
+    return redirect(url_for('index'))
+
+@app.route('/registerC', methods=['POST'])
+def regC():
+    error = None
+    UserList=[]
+    chapList=[]
+    if request.method == 'POST':
+        chap= models.Chap(name  = request.form['chapn'], parent = request.form['chapn'], kids = '')
+        db.session.add(chap)
+        chapList.append(chap)
         db.session.commit()
         flash('You registered')
         return render_template('thanks.html',

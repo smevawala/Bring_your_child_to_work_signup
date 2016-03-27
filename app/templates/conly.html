@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block cssScripts %}
+{% endblock %}
+{% block content %}
+    <div class="container">
+
+      <form class="form-horizontal" role="form" action='/registerC' method="POST">
+
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="chapn">Chaperone Name:</label>
+          <div class="col-sm-10">
+          <input type="text" class="form-control" name="chapn" id="chapn">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </form>
+
+
+    </div> <!-- /container -->
+
+{% endblock %}
