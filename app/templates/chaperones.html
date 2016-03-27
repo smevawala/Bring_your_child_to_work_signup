@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Current Signups</h1>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Chaperone Name</th>
+          <th>Employee Name</th>
+          <th>Associated with</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set count = 0 %}
+        {% for user in users %}
+        {% set count = count+1 %}
+        <tr>
+          <th scope="row">{{count}}</th>
+          <td>{{user.name}}</td>
+          <td>{{user.parent}}</td>
+          <td>{{user.kids}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}
