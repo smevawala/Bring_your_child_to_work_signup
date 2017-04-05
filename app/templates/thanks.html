@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Thanks for registering</h1>
-    <p>Please review the following entries.  If there are any issues, email Pat.</p>
+    <p>Please review the following entries.  If there are any issues, email Pat or Shivam.</p>
     {% if users|count!=0 %}
     <h2>Children Registered:</h2>
     <table class="table">
@@ -12,6 +12,7 @@
           <th>Parent Name</th>
           <th>Age</th>
           <th>Lunch</th>
+          <th>Email</th>
           <th>Notes</th>
         </tr>
       </thead>
@@ -25,6 +26,7 @@
           <td>{{user.parent}}</td>
           <td>{{user.age}}</td>
           <td>{{'Yes' if user.lunch else 'No'}}</td>
+          <td>{{user.parent_email}}</td>
           <td>{{user.notes}}</td>
         </tr>
         {% endfor %}
@@ -39,6 +41,7 @@
           <th>#</th>
           <th>Chaperone Name</th>
           <th>Employee Name</th>
+          <th>Email</th>
           <th>Associated with</th>
         </tr>
       </thead>
@@ -50,6 +53,7 @@
           <th scope="row">{{count}}</th>
           <td>{{chap.name}}</td>
           <td>{{chap.parent}}</td>
+          <td>{{chap.parent_email}}</td>
           <td>{{chap.kids}}</td>
         </tr>
         {% endfor %}

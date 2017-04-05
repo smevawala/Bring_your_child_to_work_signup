@@ -1,5 +1,7 @@
 from flask import render_template, request, redirect, flash, url_for
-from app import app, db, models
+from app import app, db, models, mail
+from flask_mail import Message
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -36,17 +38,27 @@ def login():
     if request.method == 'POST':
         while(request.form['name'+str(n)]!=''):
             print(n)
-            UserList.append(models.User(name=request.form['name'+str(n)], age = int(request.form['age'+str(n)]), parent = request.form['parent'], lunch = (request.form['lunch']!="false")
-            , chaperone = (request.form['chap']!="false"), chapName = request.form['chapn'], notes = request.form['notes'+str(n)]))
-            db.session.add(UserList[n-1])
-            chapText+=request.form['name'+str(n)]+" Age:"+request.form['age'+str(n)]+", "
+            print(request.form['name'+str(n)])
+            if(models.User.query.filter(models.User.name == request.form['name'+str(n)], models.User.parent == request.form['parent']).count()==0):
+                UserList.append(models.User(name=request.form['name'+str(n)], age = int(request.form['age'+str(n)]), parent = request.form['parent'], parent_email = request.form['parent_email'], lunch = (request.form['lunch']!="false")
+                , chaperone = (request.form['chap']!="false"), chapName = request.form['chapn'], notes = request.form['notes'+str(n)]))
+                db.session.add(UserList[n-1])
+                chapText+=request.form['name'+str(n)]+" Age:"+request.form['age'+str(n)]+", "
+            else:
+                return 'Error, '+request.form['name'+str(n)]+' is already registered.  Please email Shivam at smevawala@lgsinnovations.com for assistance'
             n+=1
         if(request.form['chap']!="false"):
-            chap= models.Chap(name  = request.form['chapn'], parent = request.form['parent'], kids = chapText)
-            db.session.add(chap)
-            chapList.append(chap)
+            if(models.Chap.query.filter(models.Chap.name == request.form['chapn'], models.Chap.parent == request.form['parent']).count()==0):
+                chap= models.Chap(name  = request.form['chapn'], parent = request.form['parent'], parent_email = request.form['parent_email'], kids = chapText)
+                db.session.add(chap)
+                chapList.append(chap)
+            else:
+                return 'Error, '+request.form['chapn']+' is already registered as a chaperone.  Please email Shivam at smevawala@lgsinnovations.com for assistance'
+
         db.session.commit()
         flash('You registered')
+        msg=Message("Thanks for registering for LGS's Bring Your Child to Work Day!", sender="smevawala@lgsinnovations.com", recipients=[UserList[0].parent_email])
+        #mail.send(msg)
         return render_template('thanks.html',
                                title='Thank You For Registering',
                                users=UserList, chaps=chapList)
@@ -58,12 +70,17 @@ def regC():
     UserList=[]
     chapList=[]
     if request.method == 'POST':
-        chap= models.Chap(name  = request.form['chapn'], parent = request.form['chapn'], kids = '')
-        db.session.add(chap)
-        chapList.append(chap)
-        db.session.commit()
-        flash('You registered')
-        return render_template('thanks.html',
-                               title='Thank You For Registering',
-                               users=UserList, chaps=chapList)
+        if(models.Chap.query.filter(models.Chap.name == request.form['chapn'], models.Chap.parent == request.form['chapn']).count()==0):
+            print("got here")
+            chap= models.Chap(name  = request.form['chapn'], parent = request.form['chapn'], parent_email = "" ,kids = '')
+            db.session.add(chap)
+            chapList.append(chap)
+            db.session.commit()
+            flash('You registered')
+            return render_template('thanks.html',
+                                   title='Thank You For Registering',
+                                   users=UserList, chaps=chapList)
+        else:
+            print("got here else")
+            return 'Error, '+request.form['chapn']+' is already registered as a chaperone.  Please email Shivam at smevawala@lgsinnovations.com for assistance'
     return redirect(url_for('index'))
